@@ -1,0 +1,39 @@
+﻿@model Assignment5.Models.AlbumBaseViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+}
+<style>
+    .dl-horizontal {
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        opacity: 0.8;
+        filter: alpha(opacity=60);
+        background-color: #ffffff;
+        color: black;
+        border-collapse: collapse;
+    }
+
+   
+</style>
+<h2 style="font-family:Georgia, 'Times New Roman', Times, serif;color:white;">Details</h2>
+
+<div>
+    <h4 style="font-family:Georgia, 'Times New Roman', Times, serif;color:white;">Album Details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AlbumId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
