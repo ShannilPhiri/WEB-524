@@ -1,0 +1,86 @@
+﻿@model Assignments9.Models.AlbumWithDetail
+
+@{
+    ViewBag.Title = "Details";
+    var artistCount = 0;
+    var trackCount = 0;
+}
+
+<h2>Details - @Model.Name</h2>
+
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UrlAlbum)
+        </dt>
+
+        <dd>
+            <img src="@Model.UrlAlbum" alt="" style="width: 150px;" />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Genre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Genre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Coordinator)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Coordinator)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReleaseDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReleaseDate)
+        </dd>
+
+        <dd>
+            @foreach (var track in Model.Tracks)
+            {
+                trackCount++;
+            }
+            @trackCount
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Artists)
+        </dt>
+        <dd>
+            @foreach (var artist in Model.Artists)
+            {
+                artistCount++;
+            }
+            @artistCount
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Depiction)
+        </dt>
+
+        <dd>
+            <div class="well well-lg">@Html.Raw(Model.Depiction)</div>
+        </dd>
+
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

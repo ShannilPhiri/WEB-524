@@ -1,0 +1,88 @@
+﻿@model Assignments9.Models.TrackWithDetail
+
+@{
+    ViewBag.Title = "Details";
+    var Albums = "";
+}
+
+<h2>Details - @Model.Name</h2>
+
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Genre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Genre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Clerk)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Clerk)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Composers)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Composers)
+        </dd>
+        <dt>
+            Number of albums
+        </dt>
+
+        <dd>
+            @Model.Albums.Count()
+        </dd>
+
+        <dt>
+            List of albums Artist has worked on
+        </dt>
+
+        <dd>
+
+            @foreach (var album in Model.Albums)
+            {
+                Albums = album.Name;
+
+            }
+            @Albums
+
+        </dd>
+        <dt>
+            Sample Audio
+        </dt>
+
+        <dd>
+            @if (Model.ContentType != null)
+            {
+                <audio src="/clip/@Model.Id" controls="controls"></audio>
+            }
+            else
+            {
+                <span>No audio sample available.</span>
+            }
+        </dd>
+
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
