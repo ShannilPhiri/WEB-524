@@ -1,0 +1,63 @@
+﻿@model Assignment6.Models.PlayListWithDetails
+
+@{
+    ViewBag.Title = "Details";
+}
+<style>
+    .dl-horizontal {
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        opacity: 0.8;
+        filter: alpha(opacity=60);
+        background-color: #ffffff;
+        color: black;
+        border-collapse: collapse;
+        display: block;
+        height: 500px;
+        overflow-y: scroll;
+    }
+</style>
+<h2 style="font-family:Georgia, 'Times New Roman', Times, serif;color:white">Playlist details <mark> @Html.DisplayFor(model => model.Name)</mark></h2>
+
+<div>
+    
+    <hr />
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.PlaylistId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+    <hr/>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt><br /></dt>
+        <dd><br /></dd>
+        <dt>
+            @Html.Raw("Tracks now on the playlist ")
+            <span class="badge">@Model.TracksCount</span>
+        </dt>
+        <dd>
+            @if (Model.TracksCount > 0)
+            {
+                foreach (var track in Model.Tracks)
+                {
+                    <span>@track.Name</span>
+                    <br />
+                }
+            }
+            else
+            {<span>The list is empty.<br /> Press 'Edit' to add song to this playlist.</span>}
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PlaylistId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+

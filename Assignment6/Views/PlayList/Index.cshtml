@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Assignment6.Models.PlayListBaseViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+<style>
+    .table {
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        opacity: 0.8;
+        filter: alpha(opacity=60);
+        background-color: #ffffff;
+        color: black;
+        border-collapse: collapse;
+        display: block;
+        height: 500px;
+        overflow-y: scroll;
+    }
+</style>
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TracksCount)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            <span class="badge">
+                @Html.DisplayFor(modelItem => item.TracksCount)
+            </span>
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PlaylistId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PlaylistId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PlaylistId })
+        </td>
+    </tr>
+}
+
+</table>

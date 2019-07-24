@@ -1,0 +1,68 @@
+﻿@model Assignment6.Models.PlayListEditTrackFormViewModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+<style>
+    .form-horizontal {
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        opacity: 0.8;
+        filter: alpha(opacity=60);
+        background-color: #ffffff;
+        color: black;
+        border-collapse: collapse;
+        display: block;
+        height: 500px;
+        overflow-y: scroll;
+    }
+</style>
+<h2 style="font-family:Georgia, 'Times New Roman', Times, serif;color:white">Edit Playlist <mark>@Html.DisplayFor(model=>model.Name)</mark></h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>Select tracks and click the "Save changes" button</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.PlaylistId)
+
+    <div class="btn-group">
+        <input type="submit" value="Save" class="btn btn-default" />&nbsp;&nbsp;
+        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Back to Details", "Details", new { id = Model.PlaylistId })
+    </div>
+
+    <hr />
+
+    <div class="row">
+        <div class="col-md-6">
+            <h4>All Tracks</h4>
+            <br />
+            @foreach (var track in Model.TrackList)
+            {
+                <input type="checkbox" name="TrackId" value="@track.Value" checked="@track.Selected" />
+                @track.Text
+                <br />
+            }
+        </div>
+        <div class="col-md-6 bg-success">
+            <h4>Now on playlist <span class="badge">@Model.TracksOnPlaylist.Count() </span></h4>
+            <br />
+            @foreach (var track in Model.TracksOnPlaylist)
+            {
+                @track.NameFull;
+                <br />
+            }
+        </div>
+    </div>
+</div>
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
